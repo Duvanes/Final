@@ -1,0 +1,27 @@
+--1.
+CREATE TYPE number_array AS VARRAY(100) OF INTEGER;
+
+CREATE OR REPLACE FUNCTION divisible_sum_pairs (ar IN number_array, k IN INTEGER)
+RETURN  INTEGER AS RESULTADO INTEGER;
+
+BEGIN
+RESULTADO := 0;
+
+FOR i IN ar.FIRST .. ar.LAST
+LOOP
+FOR j IN i+1 .. ar.LAST
+LOOP
+IF i < j THEN
+IF MOD((ar(i) + ar(j)),k) = 0 THEN
+RESULTADO := RESULTADO + 1;
+END IF;
+END IF;
+END LOOP;
+END LOOP;
+
+RETURN RESULTADO;
+END;
+
+
+
+--2.
